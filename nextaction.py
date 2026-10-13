@@ -14,6 +14,8 @@ Estimators:
   nexttoken-preamble  the same, but the reply is prefilled with the preamble
               the models write anyway ("I predict ... to be:\n\n") and each
               action's probability is pooled over "(name args)" and "name args"
+  choice      TypeSafe's Jev: one Choice question whose options are all grounded
+              actions (shuffled per sample); Jev returns a probability for each
 
 Subcommands:
   plan     build/print the reference plans (data/<domain>/reference_plan.txt)
@@ -22,8 +24,8 @@ Subcommands:
   score    write results/nextaction/report.md, summary.csv, per_row.csv
 
 Model specs: OpenAI ids as in bench.py (`id@effort`), `hf:<repo-or-path>` for
-a local transformers model, and offline mocks `mock-uniform`, `mock-random`,
-`mock-lm`.
+a local transformers model, `jev-<version>` (choice only), and offline mocks
+`mock-uniform`, `mock-random`, `mock-lm`.
 """
 
 import argparse
@@ -45,7 +47,7 @@ from bench import DATA, DOMAINS, ApiError, fmt, mean, strip_comments
 
 OUT = Path(os.environ.get("NEXTACTION_OUT", bench.RESULTS / "nextaction"))
 RAW = OUT / "raw.jsonl"
-ESTIMATORS = ["verbalized", "sampling", "nexttoken", "nexttoken-preamble"]
+ESTIMATORS = ["verbalized", "sampling", "nexttoken", "nexttoken-preamble", "choice"]
 # nexttoken-preamble prefills the reply with this (Llama-3's own wording). It ends
 # on a line break, so the action after it tokenizes as it naturally would; a bare
 # "(" prefill does not, because "(un", "(p", "(re" are single tokens.
@@ -270,6 +272,26 @@ The action must be one action from the vocabulary: your best guess for the agent
     raise ValueError(estimator)
 
 
+JEV_INSTRUCTIONS = (
+    "An agent acts in the planning domain `domain_pddl`, starting from the objects and initial state "
+    "in `problem_pddl`. Its goal is exactly one of `candidate_goals`, but you do not know which. "
+    "`actions_so_far` lists every action the agent has taken so far, complete and in order. Every "
+    "action costs 1, and the agent tends to pursue its goal with low-cost (efficient) plans. "
+    "Which action will the agent take next?"
+)
+
+
+def jev_choice(w, t, order):
+    """Jev request for the choice estimator: the same information as the chat
+    prompt, with the grounded actions (in `order`) as the Choice options."""
+    dom = w.dom
+    state = {"domain_pddl": dom["domain_pddl"], "problem_pddl": dom["problem_pddl"],
+             "candidate_goals": {lab: f"(and {' '.join(h)})" for lab, h in zip(dom["labels"], dom["hyps"])},
+             "actions_so_far": w.plan[:t]}
+    question = {"type": "choice", "instructions": JEV_INSTRUCTIONS, "criteria": {a: None for a in order}}
+    return state, {"next_action": question}
+
+
 # ---------------------------------------------------------------- open-model backend
 
 class HFModel:
@@ -388,8 +410,24 @@ def mock_generate(spec, w, estimator, top_k, seed):
 def do_call(job, worlds, args):
     estimator, spec, n, t, s = job
     w = worlds[n]
-    system, user = build_prompt(w, t, estimator, args.top_k)
     seed = hash((spec, n, t, s, estimator)) & 0xFFFFFFFF
+    if estimator == "choice":
+        # Jev 1.13 leans toward the first option, so every sample gets its own order.
+        order = [a.text for a in w.actions]
+        random.Random(repr((n, t, s))).shuffle(order)
+        if spec.startswith("mock-"):
+            rng = random.Random(seed)
+            raw = {a: rng.expovariate(1) for a in order}
+            probs = {a: v / sum(raw.values()) for a, v in raw.items()}
+            return {"probs": probs, "choice": max(probs, key=probs.get), "option_order": order,
+                    "served_model": spec, "input_tokens": 0, "output_tokens": 0}
+        state, questions = jev_choice(w, t, order)
+        resp = bench.with_retries(lambda: bench.jev_request(spec, state, questions, args), args)
+        ans, usage = resp["answers"]["next_action"], resp.get("usage") or {}
+        return {"probs": ans["probabilities"], "choice": ans["choice"], "confidence": ans.get("confidence"),
+                "option_order": order, "served_model": resp.get("model"),
+                "input_tokens": usage.get("input_tokens"), "output_tokens": usage.get("output_tokens")}
+    system, user = build_prompt(w, t, estimator, args.top_k)
     if estimator.startswith("nexttoken"):
         texts = [a.text for a in w.actions]
         if estimator == "nexttoken":
@@ -447,8 +485,8 @@ def cmd_run(args):
     n_samples = 1 if args.estimator.startswith("nexttoken") else args.samples
     jobs = []
     for spec in args.model:
-        if bench.is_jev(spec):
-            sys.exit(f"{spec} is only wired into bench.py (goal recognition), not next-action prediction")
+        if bench.is_jev(spec) != (args.estimator == "choice") and not spec.startswith("mock-"):
+            sys.exit(f"the choice estimator runs on Jev (jev-<version>) and Jev runs only as choice, not {args.estimator} with {spec}")
         if args.estimator.startswith("nexttoken") and not (spec.startswith("hf:") or spec == "mock-lm"):
             sys.exit(f"{args.estimator} needs an open model (hf:<name>) or mock-lm, not {spec}")
         for n in args.domains:
@@ -464,9 +502,9 @@ def cmd_run(args):
         for j in jobs:
             print("  ", *j)
         return
-    api = [j for j in jobs if not (j[1].startswith(("mock-", "hf:")))]
-    if api and not os.environ.get("OPENAI_API_KEY"):
-        sys.exit("OPENAI_API_KEY is not set. Export it in your shell first.")
+    msg = bench.missing_keys({j[1] for j in jobs})
+    if msg:
+        sys.exit(msg)
 
     lock = threading.Lock()
 
@@ -651,6 +689,22 @@ def cmd_score(args):
             if len(ok) > 1:  # mean of the stated distributions
                 p = {a: mean([d[0][a] for d in ok]) for a in ok[0][0]}
                 dists.append(("verbalized-mean", m, n, t, 0, p, mean([d[1] for d in ok]), cost))
+        elif est == "choice":
+            ok = []
+            for r in sorted(rs, key=lambda r: r["sample"]):
+                if r.get("error"):
+                    invalid_resp[(est, m)] += 1
+                    continue
+                p = {a.text: max(float(r["probs"].get(a.text, 0.0)), 0.0) for a in w.actions}
+                z = sum(p.values())
+                p = {a: v / z for a, v in p.items()}
+                ok.append(p)
+                one = {"calls": 1, "input_tokens": r.get("input_tokens") or 0,
+                       "output_tokens": r.get("output_tokens") or 0}
+                dists.append((est, m, n, t, r["sample"], p, 0.0, one))
+            if len(ok) > 1:  # mean over the shuffled option orders
+                p = {a: mean([d[a] for d in ok]) for a in ok[0]}
+                dists.append(("choice-mean", m, n, t, 0, p, 0.0, cost))
         elif est == "sampling":
             draws = []
             for r in rs:
@@ -792,6 +846,11 @@ def cmd_plan(args):
 
 def cmd_prompt(args):
     w = World(args.domain)
+    if args.estimator == "choice":
+        state, questions = jev_choice(w, args.t, [a.text for a in w.actions])
+        print(json.dumps({"state": state, "questions": questions}, indent=1))
+        print(f"\n[target] {w.plan[args.t]}")
+        return
     system, user = build_prompt(w, args.t, args.estimator, args.top_k)
     print(f"[system] {system}\n\n{user}\n\n[target] {w.plan[args.t]}")
 
@@ -815,11 +874,11 @@ def main():
     p = sub.add_parser("run", help="query models")
     p.add_argument("--estimator", choices=ESTIMATORS, required=True)
     p.add_argument("--model", action="append", required=True,
-                   help="repeatable: OpenAI id[@effort], hf:<name>, mock-uniform, mock-random, mock-lm")
+                   help="repeatable: OpenAI id[@effort], hf:<name>, jev-<version> (choice), mock-uniform, mock-random, mock-lm")
     p.add_argument("--domains", nargs="+", choices=DOMAINS, default=list(DOMAINS))
     p.add_argument("--steps", nargs="+", type=int, help="decision points t (default: all)")
     p.add_argument("--samples", type=int, default=None,
-                   help="verbalized: repeats per point (default 3); sampling: K (default 10)")
+                   help="verbalized / choice: repeats per point (default 3); sampling: K (default 10)")
     p.add_argument("--top-k", type=int, default=5, help="verbalized: how many actions to list")
     p.add_argument("--workers", type=int, default=4)
     p.add_argument("--temperature", type=float, default=None,
@@ -841,7 +900,7 @@ def main():
 
     args = ap.parse_args()
     if getattr(args, "samples", 0) is None:
-        args.samples = {"verbalized": 3, "sampling": 10}.get(args.estimator, 1)
+        args.samples = {"verbalized": 3, "choice": 3, "sampling": 10}.get(args.estimator, 1)
     args.fn(args)
 
 

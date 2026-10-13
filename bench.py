@@ -233,38 +233,41 @@ def jev_order(labels, seed_key):
     return order
 
 
-def call_jev(spec, dom, obs, order, args):
-    """TypeSafe's Jev answers a Choice question with a probability per option, so
-    the candidate goals become the options and no JSON parsing is involved. The
-    answer is stored in the same JSON shape the chat models return."""
+def jev_request(spec, state, questions, args):
+    """POST one System One request to TypeSafe; returns the parsed response."""
     key = os.environ.get("TYPESAFE_API_KEY")
     if not key:
         raise ApiError("TYPESAFE_API_KEY is not set", retryable=False)
     base = os.environ.get("TYPESAFE_BASE_URL", "https://api.typesafe.ai").rstrip("/")
-    hyps = dict(zip(dom["labels"], dom["hyps"]))
-    body = {
-        "model": spec,
-        "state": {"domain_pddl": dom["domain_pddl"], "problem_pddl": dom["problem_pddl"],
-                  "observed_actions": obs},
-        "questions": {"goal": {
-            "type": "choice",
-            "instructions": JEV_INSTRUCTIONS,
-            "criteria": {l: f"The agent's goal is (and {' '.join(hyps[l])})" for l in order},
-        }},
-    }
     req = urllib.request.Request(
         f"{base}/v1/systemone",
-        data=json.dumps(body).encode(),
+        data=json.dumps({"model": spec, "state": state, "questions": questions}).encode(),
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
     )
     try:
         with urllib.request.urlopen(req, timeout=args.timeout) as r:
-            resp = json.loads(r.read())
+            return json.loads(r.read())
     except urllib.error.HTTPError as e:
         detail = e.read().decode(errors="replace")[:500]
         raise ApiError(f"HTTP {e.code}: {detail}", retryable=e.code in (408, 409, 429) or e.code >= 500)
     except (urllib.error.URLError, TimeoutError) as e:
         raise ApiError(f"network: {e}", retryable=True)
+
+
+def call_jev(spec, dom, obs, order, args):
+    """TypeSafe's Jev answers a Choice question with a probability per option, so
+    the candidate goals become the options and no JSON parsing is involved. The
+    answer is stored in the same JSON shape the chat models return."""
+    hyps = dict(zip(dom["labels"], dom["hyps"]))
+    resp = jev_request(
+        spec,
+        {"domain_pddl": dom["domain_pddl"], "problem_pddl": dom["problem_pddl"], "observed_actions": obs},
+        {"goal": {
+            "type": "choice",
+            "instructions": JEV_INSTRUCTIONS,
+            "criteria": {l: f"The agent's goal is (and {' '.join(hyps[l])})" for l in order},
+        }},
+        args)
     ans = resp["answers"]["goal"]
     usage = resp.get("usage") or {}
     content = json.dumps({"reasoning": None, "probabilities": ans["probabilities"],

@@ -13,24 +13,34 @@ Unparseable or failed responses: sampling/hf:Qwen/Qwen2.5-7B-Instruct 2/300, sam
 
 | estimator | model | points | top-1 | top-3 | top-5 | p(true) | NLL | Brier | ECE | invalid | ungrounded | calls/pt | tokens/pt |
 |---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| choice | jev-latest | 30 | 0.32 | 0.52 | 0.67 | 0.17 | 2.74 | 0.84 | 0.10 | 0.32 | 0.00 | 1.0 | 3872 |
+| choice-mean | jev-latest | 30 | 0.27 | 0.52 | 0.73 | 0.17 | 2.54 | 0.83 | 0.17 | 0.32 | 0.00 | 3.0 | 11617 |
 | nexttoken | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.10 | 0.30 | 0.47 | 0.11 | 4.95 | 1.26 | 0.50 | 0.34 | 0.00 | 1.0 | 1832 |
 | nexttoken | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.10 | 0.20 | 0.23 | 0.04 | 5.09 | 1.09 | 0.27 | 0.53 | 0.00 | 1.0 | 1826 |
 | nexttoken-preamble | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.07 | 0.37 | 0.43 | 0.12 | 4.97 | 1.23 | 0.53 | 0.35 | 0.00 | 1.0 | 1842 |
 | nexttoken-preamble | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.03 | 0.27 | 0.30 | 0.08 | 4.58 | 1.06 | 0.32 | 0.51 | 0.00 | 1.0 | 1836 |
+| sampling | gpt-5.5 | 30 | 0.72 | 0.77 | 0.78 | 0.67 | 2.30 | 0.52 | 0.26 | 0.00 | 0.00 | 10.0 | 43693 |
 | sampling | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.13 | 0.25 | 0.33 | 0.09 | 6.48 | 1.11 | 0.26 | 0.40 | 0.04 | 10.0 | 19725 |
 | sampling | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.13 | 0.25 | 0.27 | 0.08 | 6.91 | 1.07 | 0.23 | 0.47 | 0.01 | 10.0 | 19338 |
+| verbalized | gpt-5.5 | 30 | 0.61 | 0.83 | 0.90 | 0.45 | 1.45 | 0.50 | 0.13 | 0.09 | 0.00 | 1.0 | 5433 |
 | verbalized | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.10 | 0.21 | 0.24 | 0.07 | 6.74 | 1.11 | 0.27 | 0.54 | 0.02 | 1.0 | 2116 |
 | verbalized | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.05 | 0.16 | 0.21 | 0.04 | 5.71 | 1.11 | 0.26 | 0.59 | 0.01 | 1.0 | 2088 |
+| verbalized-mean | gpt-5.5 | 30 | 0.67 | 0.87 | 0.93 | 0.45 | 1.35 | 0.50 | 0.18 | 0.09 | 0.00 | 3.0 | 16300 |
 | verbalized-mean | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.13 | 0.17 | 0.30 | 0.07 | 5.24 | 1.00 | 0.19 | 0.54 | 0.02 | 3.0 | 6349 |
 | verbalized-mean | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.10 | 0.17 | 0.30 | 0.04 | 4.95 | 1.02 | 0.10 | 0.59 | 0.01 | 3.0 | 6266 |
+| choice +mask | jev-latest | 30 | 0.36 | 0.59 | 0.78 | 0.26 | 2.28 | 0.80 | 0.16 | 0.00 | 0.00 | 1.0 | 3872 |
+| choice-mean +mask | jev-latest | 30 | 0.33 | 0.58 | 0.83 | 0.26 | 2.07 | 0.78 | 0.22 | 0.00 | 0.00 | 3.0 | 11617 |
 | nexttoken +mask | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.17 | 0.43 | 0.77 | 0.19 | 4.06 | 1.18 | 0.49 | 0.00 | 0.00 | 1.0 | 1832 |
 | nexttoken +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.13 | 0.33 | 0.57 | 0.13 | 4.18 | 1.17 | 0.49 | 0.00 | 0.00 | 1.0 | 1826 |
 | nexttoken-preamble +mask | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.17 | 0.53 | 0.80 | 0.21 | 4.13 | 1.17 | 0.54 | 0.00 | 0.00 | 1.0 | 1842 |
 | nexttoken-preamble +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.17 | 0.47 | 0.70 | 0.20 | 3.59 | 1.00 | 0.39 | 0.00 | 0.00 | 1.0 | 1836 |
+| sampling +mask | gpt-5.5 | 30 | 0.72 | 0.77 | 0.78 | 0.67 | 2.30 | 0.52 | 0.26 | 0.00 | 0.00 | 10.0 | 43693 |
 | sampling +mask | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.20 | 0.37 | 0.44 | 0.15 | 5.74 | 1.22 | 0.42 | 0.00 | 0.00 | 10.0 | 19725 |
 | sampling +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.15 | 0.31 | 0.36 | 0.15 | 6.27 | 1.24 | 0.49 | 0.00 | 0.00 | 10.0 | 19338 |
+| verbalized +mask | gpt-5.5 | 30 | 0.61 | 0.83 | 0.90 | 0.47 | 1.34 | 0.50 | 0.10 | 0.00 | 0.00 | 1.0 | 5433 |
 | verbalized +mask | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.18 | 0.33 | 0.45 | 0.14 | 4.74 | 1.10 | 0.26 | 0.00 | 0.00 | 1.0 | 2116 |
 | verbalized +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.13 | 0.36 | 0.56 | 0.09 | 4.04 | 1.21 | 0.36 | 0.00 | 0.00 | 1.0 | 2088 |
+| verbalized-mean +mask | gpt-5.5 | 30 | 0.67 | 0.87 | 0.93 | 0.47 | 1.25 | 0.49 | 0.17 | 0.00 | 0.00 | 3.0 | 16300 |
 | verbalized-mean +mask | hf:Qwen/Qwen2.5-7B-Instruct | 30 | 0.21 | 0.35 | 0.60 | 0.15 | 3.85 | 1.02 | 0.23 | 0.00 | 0.00 | 3.0 | 6349 |
 | verbalized-mean +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 30 | 0.11 | 0.40 | 0.61 | 0.08 | 3.63 | 1.18 | 0.34 | 0.00 | 0.00 | 3.0 | 6266 |
 | baseline | uniform-all | 30 | 0.01 | 0.03 | 0.05 | 0.01 | 4.62 | 0.99 | 0.00 | 0.83 | 0.00 | – | 0 |
@@ -40,24 +50,34 @@ Unparseable or failed responses: sampling/hf:Qwen/Qwen2.5-7B-Instruct 2/300, sam
 
 | estimator | model | points | top-1 | top-3 | top-5 | p(true) | NLL | Brier | ECE | invalid | ungrounded | calls/pt | tokens/pt |
 |---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| choice | jev-latest | 10 | 0.23 | 0.60 | 0.77 | 0.12 | 2.69 | 0.87 | 0.13 | 0.60 | 0.00 | 1.0 | 4227 |
+| choice-mean | jev-latest | 10 | 0.10 | 0.70 | 0.90 | 0.12 | 2.46 | 0.85 | 0.10 | 0.60 | 0.00 | 3.0 | 12682 |
 | nexttoken | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.00 | 0.10 | 0.10 | 0.02 | 6.38 | 1.30 | 0.47 | 0.83 | 0.00 | 1.0 | 1858 |
 | nexttoken | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.10 | 0.20 | 0.20 | 0.04 | 6.06 | 1.05 | 0.17 | 0.89 | 0.00 | 1.0 | 1847 |
 | nexttoken-preamble | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.00 | 0.10 | 0.10 | 0.03 | 6.46 | 1.21 | 0.40 | 0.84 | 0.00 | 1.0 | 1868 |
 | nexttoken-preamble | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.00 | 0.00 | 0.10 | 0.01 | 6.32 | 1.12 | 0.27 | 0.90 | 0.00 | 1.0 | 1857 |
+| sampling | gpt-5.5 | 10 | 0.80 | 0.80 | 0.81 | 0.77 | 1.94 | 0.39 | 0.21 | 0.00 | 0.00 | 10.0 | 47743 |
 | sampling | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.03 | 0.12 | 0.16 | 0.03 | 7.96 | 1.16 | 0.29 | 0.70 | 0.00 | 10.0 | 20052 |
 | sampling | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.00 | 0.02 | 0.05 | 0.01 | 8.74 | 1.18 | 0.29 | 0.76 | 0.00 | 10.0 | 19565 |
+| verbalized | gpt-5.5 | 10 | 0.77 | 1.00 | 1.00 | 0.62 | 0.60 | 0.32 | 0.19 | 0.02 | 0.00 | 1.0 | 6812 |
 | verbalized | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.03 | 0.15 | 0.15 | 0.03 | 7.79 | 1.19 | 0.32 | 0.78 | 0.00 | 1.0 | 2142 |
 | verbalized | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.00 | 0.00 | 0.00 | 0.00 | 6.84 | 1.18 | 0.31 | 0.90 | 0.00 | 1.0 | 2108 |
+| verbalized-mean | gpt-5.5 | 10 | 0.80 | 1.00 | 1.00 | 0.62 | 0.59 | 0.32 | 0.33 | 0.02 | 0.00 | 3.0 | 20435 |
 | verbalized-mean | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.00 | 0.10 | 0.25 | 0.03 | 6.03 | 1.06 | 0.22 | 0.78 | 0.00 | 3.0 | 6430 |
 | verbalized-mean | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.00 | 0.00 | 0.00 | 0.00 | 6.58 | 1.11 | 0.22 | 0.90 | 0.00 | 3.0 | 6325 |
+| choice +mask | jev-latest | 10 | 0.33 | 0.80 | 0.96 | 0.30 | 1.70 | 0.75 | 0.17 | 0.00 | 0.00 | 1.0 | 4227 |
+| choice-mean +mask | jev-latest | 10 | 0.30 | 0.90 | 1.00 | 0.31 | 1.44 | 0.72 | 0.19 | 0.00 | 0.00 | 3.0 | 12682 |
 | nexttoken +mask | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.10 | 0.40 | 0.90 | 0.13 | 4.30 | 1.32 | 0.56 | 0.00 | 0.00 | 1.0 | 1858 |
 | nexttoken +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.20 | 0.50 | 0.90 | 0.21 | 4.19 | 1.11 | 0.48 | 0.00 | 0.00 | 1.0 | 1847 |
 | nexttoken-preamble +mask | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.10 | 0.50 | 0.90 | 0.15 | 4.67 | 1.28 | 0.57 | 0.00 | 0.00 | 1.0 | 1868 |
 | nexttoken-preamble +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.20 | 0.40 | 1.00 | 0.23 | 4.33 | 1.09 | 0.48 | 0.00 | 0.00 | 1.0 | 1857 |
+| sampling +mask | gpt-5.5 | 10 | 0.80 | 0.80 | 0.81 | 0.77 | 1.94 | 0.39 | 0.21 | 0.00 | 0.00 | 10.0 | 47743 |
 | sampling +mask | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.14 | 0.32 | 0.40 | 0.12 | 6.24 | 1.41 | 0.56 | 0.00 | 0.00 | 10.0 | 20052 |
 | sampling +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.04 | 0.19 | 0.30 | 0.06 | 7.12 | 1.55 | 0.66 | 0.00 | 0.00 | 10.0 | 19565 |
+| verbalized +mask | gpt-5.5 | 10 | 0.77 | 1.00 | 1.00 | 0.63 | 0.58 | 0.32 | 0.18 | 0.00 | 0.00 | 1.0 | 6812 |
 | verbalized +mask | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.17 | 0.44 | 0.65 | 0.16 | 4.35 | 1.14 | 0.36 | 0.00 | 0.00 | 1.0 | 2142 |
 | verbalized +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.08 | 0.46 | 0.86 | 0.09 | 3.61 | 1.35 | 0.48 | 0.00 | 0.00 | 1.0 | 2108 |
+| verbalized-mean +mask | gpt-5.5 | 10 | 0.80 | 1.00 | 1.00 | 0.63 | 0.57 | 0.32 | 0.32 | 0.00 | 0.00 | 3.0 | 20435 |
 | verbalized-mean +mask | hf:Qwen/Qwen2.5-7B-Instruct | 10 | 0.23 | 0.40 | 0.83 | 0.18 | 3.53 | 1.06 | 0.35 | 0.00 | 0.00 | 3.0 | 6430 |
 | verbalized-mean +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 10 | 0.02 | 0.41 | 0.91 | 0.04 | 3.94 | 1.55 | 0.70 | 0.00 | 0.00 | 3.0 | 6325 |
 | baseline | uniform-all | 10 | 0.01 | 0.02 | 0.04 | 0.01 | 4.85 | 0.99 | 0.00 | 0.96 | 0.00 | – | 0 |
@@ -67,24 +87,34 @@ Unparseable or failed responses: sampling/hf:Qwen/Qwen2.5-7B-Instruct 2/300, sam
 
 | estimator | model | points | top-1 | top-3 | top-5 | p(true) | NLL | Brier | ECE | invalid | ungrounded | calls/pt | tokens/pt |
 |---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| choice | jev-latest | 20 | 0.37 | 0.48 | 0.62 | 0.20 | 2.76 | 0.83 | 0.18 | 0.17 | 0.00 | 1.0 | 3695 |
+| choice-mean | jev-latest | 20 | 0.35 | 0.42 | 0.65 | 0.20 | 2.58 | 0.82 | 0.24 | 0.17 | 0.00 | 3.0 | 11084 |
 | nexttoken | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.15 | 0.40 | 0.65 | 0.16 | 4.24 | 1.24 | 0.52 | 0.10 | 0.00 | 1.0 | 1819 |
 | nexttoken | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.10 | 0.20 | 0.25 | 0.04 | 4.61 | 1.12 | 0.34 | 0.35 | 0.00 | 1.0 | 1816 |
 | nexttoken-preamble | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.10 | 0.50 | 0.60 | 0.16 | 4.23 | 1.25 | 0.60 | 0.11 | 0.00 | 1.0 | 1829 |
 | nexttoken-preamble | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.05 | 0.40 | 0.40 | 0.12 | 3.71 | 1.03 | 0.35 | 0.31 | 0.00 | 1.0 | 1826 |
+| sampling | gpt-5.5 | 20 | 0.68 | 0.76 | 0.76 | 0.62 | 2.48 | 0.59 | 0.29 | 0.00 | 0.00 | 10.0 | 41668 |
 | sampling | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.18 | 0.32 | 0.41 | 0.11 | 5.73 | 1.09 | 0.24 | 0.26 | 0.06 | 10.0 | 19562 |
 | sampling | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.20 | 0.37 | 0.38 | 0.12 | 5.99 | 1.01 | 0.24 | 0.32 | 0.01 | 10.0 | 19225 |
+| verbalized | gpt-5.5 | 20 | 0.53 | 0.74 | 0.85 | 0.37 | 1.87 | 0.60 | 0.14 | 0.13 | 0.00 | 1.0 | 4744 |
 | verbalized | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.14 | 0.23 | 0.29 | 0.09 | 6.22 | 1.07 | 0.26 | 0.43 | 0.03 | 1.0 | 2103 |
 | verbalized | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.07 | 0.24 | 0.31 | 0.06 | 5.14 | 1.08 | 0.24 | 0.44 | 0.02 | 1.0 | 2078 |
+| verbalized-mean | gpt-5.5 | 20 | 0.60 | 0.80 | 0.90 | 0.37 | 1.74 | 0.59 | 0.23 | 0.13 | 0.00 | 3.0 | 14232 |
 | verbalized-mean | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.20 | 0.21 | 0.33 | 0.09 | 4.85 | 0.97 | 0.20 | 0.43 | 0.03 | 3.0 | 6309 |
 | verbalized-mean | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.15 | 0.25 | 0.45 | 0.06 | 4.13 | 0.97 | 0.04 | 0.44 | 0.02 | 3.0 | 6237 |
+| choice +mask | jev-latest | 20 | 0.37 | 0.49 | 0.69 | 0.24 | 2.56 | 0.82 | 0.22 | 0.00 | 0.00 | 1.0 | 3695 |
+| choice-mean +mask | jev-latest | 20 | 0.35 | 0.42 | 0.75 | 0.24 | 2.39 | 0.81 | 0.28 | 0.00 | 0.00 | 3.0 | 11084 |
 | nexttoken +mask | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.20 | 0.45 | 0.70 | 0.22 | 3.95 | 1.11 | 0.46 | 0.00 | 0.00 | 1.0 | 1819 |
 | nexttoken +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.10 | 0.25 | 0.40 | 0.08 | 4.18 | 1.20 | 0.50 | 0.00 | 0.00 | 1.0 | 1816 |
 | nexttoken-preamble +mask | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.20 | 0.55 | 0.75 | 0.25 | 3.86 | 1.12 | 0.52 | 0.00 | 0.00 | 1.0 | 1829 |
 | nexttoken-preamble +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.15 | 0.50 | 0.55 | 0.19 | 3.22 | 0.95 | 0.34 | 0.00 | 0.00 | 1.0 | 1826 |
+| sampling +mask | gpt-5.5 | 20 | 0.68 | 0.76 | 0.76 | 0.62 | 2.48 | 0.59 | 0.29 | 0.00 | 0.00 | 10.0 | 41668 |
 | sampling +mask | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.23 | 0.40 | 0.46 | 0.17 | 5.49 | 1.13 | 0.35 | 0.00 | 0.00 | 10.0 | 19562 |
 | sampling +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.20 | 0.37 | 0.40 | 0.19 | 5.85 | 1.08 | 0.40 | 0.00 | 0.00 | 10.0 | 19225 |
+| verbalized +mask | gpt-5.5 | 20 | 0.53 | 0.74 | 0.85 | 0.40 | 1.73 | 0.59 | 0.16 | 0.00 | 0.00 | 1.0 | 4744 |
 | verbalized +mask | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.18 | 0.27 | 0.36 | 0.14 | 4.93 | 1.07 | 0.23 | 0.00 | 0.00 | 1.0 | 2103 |
 | verbalized +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.15 | 0.31 | 0.41 | 0.09 | 4.26 | 1.14 | 0.30 | 0.00 | 0.00 | 1.0 | 2078 |
+| verbalized-mean +mask | gpt-5.5 | 20 | 0.60 | 0.80 | 0.90 | 0.40 | 1.59 | 0.57 | 0.20 | 0.00 | 0.00 | 3.0 | 14232 |
 | verbalized-mean +mask | hf:Qwen/Qwen2.5-7B-Instruct | 20 | 0.20 | 0.33 | 0.48 | 0.14 | 4.01 | 1.01 | 0.23 | 0.00 | 0.00 | 3.0 | 6309 |
 | verbalized-mean +mask | hf:meta-llama/Meta-Llama-3-8B-Instruct | 20 | 0.15 | 0.40 | 0.46 | 0.10 | 3.48 | 0.99 | 0.15 | 0.00 | 0.00 | 3.0 | 6237 |
 | baseline | uniform-all | 20 | 0.01 | 0.03 | 0.06 | 0.01 | 4.50 | 0.99 | 0.00 | 0.77 | 0.00 | – | 0 |
