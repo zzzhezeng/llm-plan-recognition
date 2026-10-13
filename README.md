@@ -134,6 +134,7 @@ applicable, so no constraint information leaks in.
 | `sampling` | K independent single-action answers (default K = 10), counted | any, incl. black-box |
 | `nexttoken` | log p(action string \| prompt) for every grounded action, softmax over the set | open models via `hf:<name>` |
 | `nexttoken-preamble` | same, but the reply is prefilled with "I predict the agent's next action to be:\n\n" and each action pools `(name args)` + `name args` | open models via `hf:<name>` |
+| `choice` | one Jev Choice question whose options are all grounded actions (order shuffled per sample, default 3 samples); Jev returns a probability for each, and `choice-mean` averages the samples | Jev via `jev-latest` |
 
 ```bash
 python3 nextaction.py plan                                  # show the reference plans
@@ -142,6 +143,7 @@ python3 nextaction.py run --estimator verbalized --model gpt-4.1 --samples 3
 python3 nextaction.py run --estimator sampling   --model gpt-4.1 --samples 10
 python3 nextaction.py run --estimator nexttoken  --model hf:Qwen/Qwen2.5-7B-Instruct
 python3 nextaction.py run --estimator sampling   --model hf:Qwen/Qwen2.5-7B-Instruct --samples 10
+python3 nextaction.py run --estimator choice     --model jev-latest --samples 3
 python3 nextaction.py score    # results/nextaction/report.md, summary.csv, per_row.csv
 ```
 
