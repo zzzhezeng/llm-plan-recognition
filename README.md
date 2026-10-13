@@ -60,9 +60,9 @@ python3 bench.py run --model hf:meta-llama/Meta-Llama-3-8B-Instruct --samples 3 
   each described by its goal conjunction), with the same task wording as the
   chat prompt. Jev's per-option probabilities are the distribution, and its
   `choice` is `most_likely`, so every response is valid and there is no
-  reasoning text. Jev 1.13 is known to favour the first option, so sample 0
-  lists the goals in FiFO's order and later samples shuffle them (the order is
-  saved as `option_order` in `raw.jsonl`); its spread across samples measures
+  reasoning text. Jev 1.13 is known to favour the first option, so every
+  sample lists the goals in its own shuffled order (seeded by domain, k and
+  sample; saved as `option_order` in `raw.jsonl`); its spread across samples measures
   order sensitivity, not sampling noise. `served_model` records the version
   behind the alias.
 - **Qwen / Llama** run locally through transformers with the same prompt as

@@ -226,10 +226,8 @@ def is_jev(spec):
 
 
 def jev_order(labels, seed_key):
-    """Option order for one Jev call: FiFO's order for sample 0, shuffled for the
-    rest, because jev-1.13 is known to lean toward the first option."""
-    if seed_key[-1] == 0:
-        return list(labels)
+    """Option order for one Jev call, shuffled per (domain, k, sample) because
+    jev-1.13 is known to lean toward the first option."""
     order = list(labels)
     random.Random(repr(seed_key)).shuffle(order)
     return order
