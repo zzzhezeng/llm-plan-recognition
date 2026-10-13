@@ -644,7 +644,10 @@ def cmd_score(args):
                     invalid_resp[(est, m)] += 1
                     continue
                 ok.append(parsed)
-                dists.append((est, m, n, t, r["sample"], *parsed, {**cost, "calls": 1}))
+                # A single-call row costs only its own call, not the whole group's.
+                one = {"calls": 1, "input_tokens": r.get("input_tokens") or 0,
+                       "output_tokens": r.get("output_tokens") or 0}
+                dists.append((est, m, n, t, r["sample"], *parsed, one))
             if len(ok) > 1:  # mean of the stated distributions
                 p = {a: mean([d[0][a] for d in ok]) for a in ok[0][0]}
                 dists.append(("verbalized-mean", m, n, t, 0, p, mean([d[1] for d in ok]), cost))
