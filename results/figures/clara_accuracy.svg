@@ -1,0 +1,354 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1746" height="1260" viewBox="0 0 1746 1260">
+<rect width="1746" height="1260" fill="#fcfcfb"/>
+<text x="40.0" y="56.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#0b0b0b" text-anchor="start">LLMs as recognizers on the CLARA grid benchmarks: Accuracy</text>
+<text x="40.0" y="96.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#52514e" text-anchor="start">Mean over evidence files; each LLM answered every file 3 times.</text>
+<text x="40.0" y="126.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#52514e" text-anchor="start">Stems run from chance to the score, so a dot left of the dashed line is below chance.</text>
+<line x1="40" y1="164" x2="80" y2="164" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="92.0" y="171.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#52514e" text-anchor="start">chance = 1 / number of candidate goals</text>
+<text x="40.0" y="244.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="600" fill="#0b0b0b" text-anchor="start">25% of the plan observed</text>
+<text x="424.0" y="244.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#898781" text-anchor="start">the real test: no candidate goal is reached yet</text>
+<text x="246.0" y="367.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">gpt-6-luna</text>
+<text x="246.0" y="407.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">gpt-5.4-mini</text>
+<text x="246.0" y="447.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">Jev</text>
+<text x="246.0" y="487.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">Qwen2.5-7B</text>
+<text x="246.0" y="527.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">Llama-3-8B</text>
+<text x="246.0" y="567.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">max-term (recognizer)</text>
+<text x="246.0" y="607.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">stop rule (no model)</text>
+<text x="270.0" y="294.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">SimpleGrid</text>
+<text x="270.0" y="320.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">2–9 goals</text>
+<line x1="270.0" y1="340" x2="270.0" y2="620" stroke="#c3c2b7" stroke-width="2"/>
+<text x="270.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="332.5" y1="340" x2="332.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="332.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="395.0" y1="340" x2="395.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="395.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="457.5" y1="340" x2="457.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="457.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="520.0" y1="340" x2="520.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="520.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="270" y1="380" x2="520" y2="380" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="420" x2="520" y2="420" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="460" x2="520" y2="460" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="500" x2="520" y2="500" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="540" x2="520" y2="540" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="580" x2="520" y2="580" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="315.4" y1="336" x2="315.4" y2="620" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="315.4" y1="360.0" x2="320.9" y2="360.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="320.9" cy="360.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="400.0" x2="315.9" y2="400.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="315.9" cy="400.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="440.0" x2="323.6" y2="440.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="323.6" cy="440.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="480.0" x2="321.8" y2="480.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="321.8" cy="480.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="520.0" x2="310.1" y2="520.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="310.1" cy="520.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="560.0" x2="316.7" y2="560.0" stroke="#1f1f1e" stroke-width="2" stroke-opacity="0.45"/>
+<rect x="309.2" y="552.5" width="15" height="15" rx="2" fill="#1f1f1e" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="600.0" x2="315.4" y2="600.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="315.4" cy="600.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="564.0" y="294.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">TwoPackage</text>
+<text x="564.0" y="320.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">4 goals</text>
+<line x1="564.0" y1="340" x2="564.0" y2="620" stroke="#c3c2b7" stroke-width="2"/>
+<text x="564.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="626.5" y1="340" x2="626.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="626.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="689.0" y1="340" x2="689.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="689.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="751.5" y1="340" x2="751.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="751.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="814.0" y1="340" x2="814.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="814.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="564" y1="380" x2="814" y2="380" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="420" x2="814" y2="420" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="460" x2="814" y2="460" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="500" x2="814" y2="500" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="540" x2="814" y2="540" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="580" x2="814" y2="580" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="626.5" y1="336" x2="626.5" y2="620" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="626.5" y1="360.0" x2="673.5" y2="360.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="673.5" cy="360.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="400.0" x2="652.5" y2="400.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="652.5" cy="400.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="440.0" x2="658.3" y2="440.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="658.3" cy="440.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="480.0" x2="632.8" y2="480.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="632.8" cy="480.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="520.0" x2="627.2" y2="520.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="627.2" cy="520.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="560.0" x2="674.9" y2="560.0" stroke="#1f1f1e" stroke-width="2" stroke-opacity="0.45"/>
+<rect x="667.4" y="552.5" width="15" height="15" rx="2" fill="#1f1f1e" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="600.0" x2="626.5" y2="600.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="626.5" cy="600.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="858.0" y="294.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">TwoPackageOneway</text>
+<text x="858.0" y="320.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">4 goals</text>
+<line x1="858.0" y1="340" x2="858.0" y2="620" stroke="#c3c2b7" stroke-width="2"/>
+<text x="858.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="920.5" y1="340" x2="920.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="920.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="983.0" y1="340" x2="983.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="983.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="1045.5" y1="340" x2="1045.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1045.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="1108.0" y1="340" x2="1108.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1108.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="858" y1="380" x2="1108" y2="380" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="420" x2="1108" y2="420" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="460" x2="1108" y2="460" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="500" x2="1108" y2="500" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="540" x2="1108" y2="540" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="580" x2="1108" y2="580" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="920.5" y1="336" x2="920.5" y2="620" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="920.5" y1="360.0" x2="961.6" y2="360.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="961.6" cy="360.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="400.0" x2="942.9" y2="400.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="942.9" cy="400.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="440.0" x2="957.5" y2="440.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="957.5" cy="440.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="480.0" x2="936.2" y2="480.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="936.2" cy="480.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="520.0" x2="936.0" y2="520.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="936.0" cy="520.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="560.0" x2="969.7" y2="560.0" stroke="#1f1f1e" stroke-width="2" stroke-opacity="0.45"/>
+<rect x="962.2" y="552.5" width="15" height="15" rx="2" fill="#1f1f1e" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="600.0" x2="920.5" y2="600.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="920.5" cy="600.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="1152.0" y="294.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">ThreePackage</text>
+<text x="1152.0" y="320.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">8 goals</text>
+<line x1="1152.0" y1="340" x2="1152.0" y2="620" stroke="#c3c2b7" stroke-width="2"/>
+<text x="1152.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="1214.5" y1="340" x2="1214.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1214.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="1277.0" y1="340" x2="1277.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1277.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="1339.5" y1="340" x2="1339.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1339.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="1402.0" y1="340" x2="1402.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1402.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="1152" y1="380" x2="1402" y2="380" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="420" x2="1402" y2="420" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="460" x2="1402" y2="460" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="500" x2="1402" y2="500" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="540" x2="1402" y2="540" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="580" x2="1402" y2="580" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1183.2" y1="336" x2="1183.2" y2="620" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="1183.2" y1="360.0" x2="1189.0" y2="360.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1189.0" cy="360.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="400.0" x2="1189.7" y2="400.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1189.7" cy="400.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="440.0" x2="1196.8" y2="440.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1196.8" cy="440.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="480.0" x2="1183.6" y2="480.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1183.6" cy="480.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="520.0" x2="1187.8" y2="520.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1187.8" cy="520.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<text x="1193.2" y="566.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="start">no results</text>
+<line x1="1183.2" y1="600.0" x2="1183.2" y2="600.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1183.2" cy="600.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="1446.0" y="294.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">FourPackage</text>
+<text x="1446.0" y="320.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">12 goals</text>
+<line x1="1446.0" y1="340" x2="1446.0" y2="620" stroke="#c3c2b7" stroke-width="2"/>
+<text x="1446.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="1508.5" y1="340" x2="1508.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1508.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="1571.0" y1="340" x2="1571.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1571.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="1633.5" y1="340" x2="1633.5" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1633.5" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="1696.0" y1="340" x2="1696.0" y2="620" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1696.0" y="648.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="1446" y1="380" x2="1696" y2="380" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="420" x2="1696" y2="420" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="460" x2="1696" y2="460" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="500" x2="1696" y2="500" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="540" x2="1696" y2="540" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="580" x2="1696" y2="580" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1466.8" y1="336" x2="1466.8" y2="620" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="1466.8" y1="360.0" x2="1521.2" y2="360.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1521.2" cy="360.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="400.0" x2="1488.9" y2="400.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1488.9" cy="400.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="440.0" x2="1506.1" y2="440.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1506.1" cy="440.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="480.0" x2="1474.0" y2="480.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1474.0" cy="480.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="520.0" x2="1469.8" y2="520.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1469.8" cy="520.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<text x="1476.8" y="566.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="start">no results</text>
+<line x1="1466.8" y1="600.0" x2="1466.8" y2="600.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1466.8" cy="600.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="40.0" y="724.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="600" fill="#0b0b0b" text-anchor="start">Whole plan observed</text>
+<text x="349.0" y="724.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#898781" text-anchor="start">the stop rule alone scores 1.0: each plan ends when its goal holds</text>
+<text x="246.0" y="847.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">gpt-6-luna</text>
+<text x="246.0" y="887.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">gpt-5.4-mini</text>
+<text x="246.0" y="927.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">Jev</text>
+<text x="246.0" y="967.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">Qwen2.5-7B</text>
+<text x="246.0" y="1007.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">Llama-3-8B</text>
+<text x="246.0" y="1047.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">max-term (recognizer)</text>
+<text x="246.0" y="1087.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#0b0b0b" text-anchor="end">stop rule (no model)</text>
+<text x="270.0" y="774.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">SimpleGrid</text>
+<text x="270.0" y="800.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">2–9 goals</text>
+<line x1="270.0" y1="820" x2="270.0" y2="1100" stroke="#c3c2b7" stroke-width="2"/>
+<text x="270.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="332.5" y1="820" x2="332.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="332.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="395.0" y1="820" x2="395.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="395.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="457.5" y1="820" x2="457.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="457.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="520.0" y1="820" x2="520.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="520.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="270" y1="860" x2="520" y2="860" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="900" x2="520" y2="900" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="940" x2="520" y2="940" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="980" x2="520" y2="980" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="1020" x2="520" y2="1020" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="270" y1="1060" x2="520" y2="1060" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="315.4" y1="816" x2="315.4" y2="1100" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="315.4" y1="840.0" x2="491.1" y2="840.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="491.1" cy="840.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="880.0" x2="500.9" y2="880.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="500.9" cy="880.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="920.0" x2="485.1" y2="920.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="485.1" cy="920.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="960.0" x2="419.0" y2="960.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="419.0" cy="960.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="1000.0" x2="330.7" y2="1000.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="330.7" cy="1000.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="1040.0" x2="406.2" y2="1040.0" stroke="#1f1f1e" stroke-width="2" stroke-opacity="0.45"/>
+<rect x="398.7" y="1032.5" width="15" height="15" rx="2" fill="#1f1f1e" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="315.4" y1="1080.0" x2="520.0" y2="1080.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="520.0" cy="1080.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="564.0" y="774.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">TwoPackage</text>
+<text x="564.0" y="800.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">4 goals</text>
+<line x1="564.0" y1="820" x2="564.0" y2="1100" stroke="#c3c2b7" stroke-width="2"/>
+<text x="564.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="626.5" y1="820" x2="626.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="626.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="689.0" y1="820" x2="689.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="689.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="751.5" y1="820" x2="751.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="751.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="814.0" y1="820" x2="814.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="814.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="564" y1="860" x2="814" y2="860" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="900" x2="814" y2="900" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="940" x2="814" y2="940" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="980" x2="814" y2="980" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="1020" x2="814" y2="1020" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="564" y1="1060" x2="814" y2="1060" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="626.5" y1="816" x2="626.5" y2="1100" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="626.5" y1="840.0" x2="814.0" y2="840.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="814.0" cy="840.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="880.0" x2="814.0" y2="880.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="814.0" cy="880.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="920.0" x2="814.0" y2="920.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="814.0" cy="920.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="960.0" x2="757.0" y2="960.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="757.0" cy="960.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="1000.0" x2="646.0" y2="1000.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="646.0" cy="1000.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="1040.0" x2="814.0" y2="1040.0" stroke="#1f1f1e" stroke-width="2" stroke-opacity="0.45"/>
+<rect x="806.5" y="1032.5" width="15" height="15" rx="2" fill="#1f1f1e" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="626.5" y1="1080.0" x2="814.0" y2="1080.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="814.0" cy="1080.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="858.0" y="774.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">TwoPackageOneway</text>
+<text x="858.0" y="800.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">4 goals</text>
+<line x1="858.0" y1="820" x2="858.0" y2="1100" stroke="#c3c2b7" stroke-width="2"/>
+<text x="858.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="920.5" y1="820" x2="920.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="920.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="983.0" y1="820" x2="983.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="983.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="1045.5" y1="820" x2="1045.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1045.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="1108.0" y1="820" x2="1108.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1108.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="858" y1="860" x2="1108" y2="860" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="900" x2="1108" y2="900" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="940" x2="1108" y2="940" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="980" x2="1108" y2="980" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="1020" x2="1108" y2="1020" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="858" y1="1060" x2="1108" y2="1060" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="920.5" y1="816" x2="920.5" y2="1100" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="920.5" y1="840.0" x2="1108.0" y2="840.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1108.0" cy="840.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="880.0" x2="1108.0" y2="880.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1108.0" cy="880.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="920.0" x2="1108.0" y2="920.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1108.0" cy="920.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="960.0" x2="1042.9" y2="960.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1042.9" cy="960.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="1000.0" x2="943.8" y2="1000.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="943.8" cy="1000.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="1040.0" x2="1108.0" y2="1040.0" stroke="#1f1f1e" stroke-width="2" stroke-opacity="0.45"/>
+<rect x="1100.5" y="1032.5" width="15" height="15" rx="2" fill="#1f1f1e" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="920.5" y1="1080.0" x2="1108.0" y2="1080.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1108.0" cy="1080.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="1152.0" y="774.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">ThreePackage</text>
+<text x="1152.0" y="800.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">8 goals</text>
+<line x1="1152.0" y1="820" x2="1152.0" y2="1100" stroke="#c3c2b7" stroke-width="2"/>
+<text x="1152.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="1214.5" y1="820" x2="1214.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1214.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="1277.0" y1="820" x2="1277.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1277.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="1339.5" y1="820" x2="1339.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1339.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="1402.0" y1="820" x2="1402.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1402.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="1152" y1="860" x2="1402" y2="860" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="900" x2="1402" y2="900" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="940" x2="1402" y2="940" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="980" x2="1402" y2="980" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="1020" x2="1402" y2="1020" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1152" y1="1060" x2="1402" y2="1060" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1183.2" y1="816" x2="1183.2" y2="1100" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="1183.2" y1="840.0" x2="1402.0" y2="840.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1402.0" cy="840.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="880.0" x2="1365.9" y2="880.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1365.9" cy="880.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="920.0" x2="1402.0" y2="920.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1402.0" cy="920.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="960.0" x2="1222.5" y2="960.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1222.5" cy="960.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1183.2" y1="1000.0" x2="1184.5" y2="1000.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1184.5" cy="1000.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<text x="1193.2" y="1046.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="start">no results</text>
+<line x1="1183.2" y1="1080.0" x2="1402.0" y2="1080.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1402.0" cy="1080.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="1446.0" y="774.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" fill="#0b0b0b" text-anchor="start">FourPackage</text>
+<text x="1446.0" y="800.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#898781" text-anchor="start">12 goals</text>
+<line x1="1446.0" y1="820" x2="1446.0" y2="1100" stroke="#c3c2b7" stroke-width="2"/>
+<text x="1446.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0</text>
+<line x1="1508.5" y1="820" x2="1508.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1508.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.25</text>
+<line x1="1571.0" y1="820" x2="1571.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1571.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.5</text>
+<line x1="1633.5" y1="820" x2="1633.5" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1633.5" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">0.75</text>
+<line x1="1696.0" y1="820" x2="1696.0" y2="1100" stroke="#e1e0d9" stroke-width="1"/>
+<text x="1696.0" y="1128.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="middle">1</text>
+<line x1="1446" y1="860" x2="1696" y2="860" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="900" x2="1696" y2="900" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="940" x2="1696" y2="940" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="980" x2="1696" y2="980" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="1020" x2="1696" y2="1020" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1446" y1="1060" x2="1696" y2="1060" stroke="#e1e0d9" stroke-width="1" stroke-dasharray="1 4"/>
+<line x1="1466.8" y1="816" x2="1466.8" y2="1100" stroke="#52514e" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="1466.8" y1="840.0" x2="1696.0" y2="840.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1696.0" cy="840.0" r="7.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="880.0" x2="1693.0" y2="880.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1693.0" cy="880.0" r="7.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="920.0" x2="1696.0" y2="920.0" stroke="#1baf7a" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1696.0" cy="920.0" r="7.5" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="960.0" x2="1571.0" y2="960.0" stroke="#eda100" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1571.0" cy="960.0" r="7.5" fill="#eda100" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="1466.8" y1="1000.0" x2="1473.4" y2="1000.0" stroke="#e87ba4" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1473.4" cy="1000.0" r="7.5" fill="#e87ba4" stroke="#fcfcfb" stroke-width="2"/>
+<text x="1476.8" y="1046.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#898781" text-anchor="start">no results</text>
+<line x1="1466.8" y1="1080.0" x2="1696.0" y2="1080.0" stroke="#898781" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="1696.0" cy="1080.0" r="7.5" fill="#fcfcfb" stroke="#898781" stroke-width="3"/>
+<text x="40.0" y="1198.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#898781" text-anchor="start">CLARA has no max-term records for ThreePackage or FourPackage. SharpSAT-TD and MC-SAT solved only some small grids, so they are left out here</text>
+<text x="40.0" y="1226.0" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#898781" text-anchor="start">and compared with each LLM on shared files in results/clara/report.md, which also gives 95% intervals.</text>
+</svg>
