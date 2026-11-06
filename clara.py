@@ -645,7 +645,7 @@ def cmd_score(args):
         return s
 
     summary = summary_table("By family and evidence", ("family", "pct", "model"), same + recs)
-    summary_table("By size", ("family", "size", "pct", "model"), same + recs)
+    by_size = summary_table("By size", ("family", "size", "pct", "model"), same + recs)
 
     L.append("## Same-file comparison with the recognizers and the stop rule\n")
     L.append("LLM minus reference, on files both answered. Intervals are 95%, from resampling problems.\n")
@@ -693,13 +693,15 @@ def cmd_score(args):
         w.writeheader()
         for r in sorted(rows, key=lambda r: (r["model"], r["variant"], r["evidence"], r["sample"])):
             w.writerow({k: (round(v, 4) if isinstance(v, float) else v) for k, v in r.items()})
-    with (results / "summary.csv").open("w", newline="") as f:
-        w = csv.DictWriter(f, ["family", "pct", "model", "files_answered", "files_planned", "accuracy", "p_true", "chance"])
-        w.writeheader()
-        for r in summary:
-            w.writerow({k: (round(v, 4) if isinstance(v, float) else v) for k, v in r.items()})
+    for name, keys, s in (("summary.csv", ["family", "pct", "model"], summary),
+                          ("summary_by_size.csv", ["family", "size", "pct", "model"], by_size)):
+        with (results / name).open("w", newline="") as f:
+            w = csv.DictWriter(f, keys + ["files_answered", "files_planned", "accuracy", "p_true", "chance"])
+            w.writeheader()
+            for r in s:
+                w.writerow({k: (round(v, 4) if isinstance(v, float) else v) for k, v in r.items()})
     print("\n".join(L))
-    print(f"\nwrote {results / 'report.md'}, summary.csv, per_response.csv")
+    print(f"\nwrote {results / 'report.md'}, summary.csv, summary_by_size.csv, per_response.csv")
 
 
 # ---------------------------------------------------------------- checks
